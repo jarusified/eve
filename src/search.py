@@ -19,8 +19,9 @@ class searchTree:
                 root=acNode(None)
                 root.fail=root
                 queue=collections.deque([root])
+		print self.topics
                 for keyword in self.topics:
-                	current_node=root
+			current_node=root
                         for ch in keyword:
                                 new_node=None
                                 for transition in current_node.transitions:

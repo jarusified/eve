@@ -1,0 +1,52 @@
+CHAPTER 30
+REENGINEERING
+809
+ties that addresses specific application domains (e.g., applications that are implemented
+using a specific database system). More important, these reengineering tools
+are becoming increasingly more sophisticated.
+Forward engineering, also called renovation or reclamation [CHI90], not only recovers
+design information from existing software, but uses this information to alter or
+reconstitute the existing system in an effort to improve its overall quality. In most
+cases, reengineered software reimplements the function of the existing system and
+also adds new functions and/or improves overall performance.
+30.3 REVERSE ENGINEERING
+XRef
+The notation discussed
+here is explained in
+detail in Chapter 12.
+Three reverse
+engineering issues
+must be addressed:
+abstraction level,
+completeness, and
+directionality.
+Reverse engineering conjures an image of the "magic slot." We feed an unstructured,
+undocumented source listing into the slot and out the other end comes full documentation
+for the computer program. Unfortunately, the magic slot doesn't exist.
+Reverse engineering can extract design information from source code, but the abstraction
+level, the completeness of the documentation, the degree to which tools and a
+human analyst work together, and the directionality of the process are highly variable
+[CAS88].
+The abstraction level of a reverse engineering process and the tools used to effect
+it refers to the sophistication of the design information that can be extracted from
+source code. Ideally, the abstraction level should be as high as possible. That is, the
+reverse engineering process should be capable of deriving procedural design representations
+(a low-level abstraction), program and data structure information (a somewhat
+higher level of abstraction), data and control flow models (a relatively high level
+of abstraction), and entity relationship models (a high level of abstraction). As the
+abstraction level increases, the software engineer is provided with information that
+will allow easier understanding of the program.
+The completeness of a reverse engineering process refers to the level of detail that
+is provided at an abstraction level. In most cases, the completeness decreases as the
+abstraction level increases. For example, given a source code listing, it is relatively
+easy to develop a complete procedural design representation. Simple data flow representations
+may also be derived, but it is far more difficult to develop a complete set
+of data flow diagrams or entity-relationship models.
+Completeness improves in direct proportion to the amount of analysis performed
+by the person doing reverse engineering. Interactivity refers to the degree to which
+the human is "integrated" with automated tools to create an effective reverse engineering
+process. In most cases, as the abstraction level increases, interactivity must
+increase or completeness will suffer.
+If the directionality of the reverse engineering process is one way, all information
+extracted from the source code is provided to the software engineer who can then
+use it during any maintenance activity. If directionality is two way, the information is

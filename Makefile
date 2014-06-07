@@ -4,14 +4,14 @@ PYTHON	= python
 all: test
 
 test::
-	$(PYTHON) src/main.py 'directionality, '
+	$(PYTHON) src/question.py  'what are zone rules and what are the 4 effects affecting them '
 	$(PYTHON) src/dumper.py data/extract.pdf
 	$(PYTHON) src/extractor.py data/extract.pdf output/extract.txt
 	$(PYTHON) src/fontfilter.py data/extract.pdf
 	$(PYTHON) src/image_extractor.py data/extract.pdf
 	$(PYTHON) src/image_resources.py data/extract.pdf
 	$(PYTHON) src/tetml.py data/extract.pdf output/extract.tetml
-
+	$(PYTHON) src/answers.py 
 test-python2: test
 	$(PYTHON) src/glyphinfo.py data/extract.pdf output/extract.info.txt
 
