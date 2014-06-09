@@ -4,6 +4,8 @@ import subprocess
 import string 
 import re
 import unicodedata
+from run import *
+import os
 from search import * 
 
 class Book:	
@@ -26,27 +28,26 @@ class Book:
 		self.dictionary={}
 		for i in range(len(self.content)):	
 			names=''.join(re.findall(r'(?!,)(?! )(?!\')\D+',self.content[i]))
-			#print self.content[i]
 			#names=re.findall(r'\w+\s(\w+),\s',self.content[i])
 			name=''.join(names)
-			#print name
 			if names!='':
 				pages=re.findall(r'\d+',self.content[i])
-				print pages
 				self.dictionary[name]=pages
-			#	tree.add_topics("requirements models, ")
-			#	tree.add_pages('556')
 				tree.add_topics(name)
 				tree.add_pages(self.dictionary[name])
-				print self.dictionary[name]	
 		tree.make()
 		tree.search(str(sys.argv[1]))
 		self.pages=tree.found_pages
 	def create_pdf(self):
-		self.pages=re.split(r'\d{1-5}',self.pages[0])
-		for i in range(len(self.pages)):
-			self.pages[i]=int(self.pages[i])+28
-			subprocess.Popen(['pdfseparate','-f',str(int(self.pages[i])),'-l',str(int(self.pages[i])),'data/a.pdf','data/extract.pdf']).communicate()
-Book1=Book("data/a.pdf")
+		try:
+			for i in range(len(self.pages)):
+				if self.pages[i]!="":
+					self.pages[i]=int(self.pages[i])+28
+					subprocess.Popen(['pdfseparate','-f',str(int(self.pages[i])),'-l',str(int(self.pages[i])),'a.pdf','extract.pdf']).communicate()
+					os.system('make')
+					split_by_lines(sys.argv[1])
+		except:
+			pass
+Book1=Book("a.pdf")
 
 

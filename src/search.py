@@ -1,4 +1,5 @@
 import collections
+from run import *
 class acNode:
         def __init__(self,ch):
                 self.char=ch
@@ -19,7 +20,7 @@ class searchTree:
                 root=acNode(None)
                 root.fail=root
                 queue=collections.deque([root])
-		print self.topics
+		#print self.topics
                 for keyword in self.topics:
 			current_node=root
                         for ch in keyword:
@@ -49,15 +50,18 @@ class searchTree:
 		self.hits=[]
                 self.found_pages=[]
                 currentNode=self.root
-		for c in text:
-                        trans=None
-                        while trans==None:
-                                for x in currentNode.transitions:
-                                        if x.char==c:
-                                                trans=x
-                                if currentNode==self.root: break
-                                if trans==None : currentNode=currentNode.fails
-                        if trans!=None: currentNode=trans
-                        for results in currentNode.results:
-				self.hits.append(results)
-                                self.found_pages.append(','.join(str(i) for i in self.pages[self.topics.index(results)] ))
+		try:
+			for c in text:
+                        	trans=None
+				while trans==None:
+                                	for x in currentNode.transitions:
+						if x.char==c:
+                                             		trans=x
+                               		if currentNode==self.root: break
+                          		if trans==None : currentNode=currentNode.fails
+				if trans!=None: currentNode=trans
+                        	for results in currentNode.results:
+					self.hits.append(results)
+                                	self.found_pages.append(','.join(str(i) for i in self.pages[self.topics.index(results)] ))
+		except:
+			parsekeyword(None)
